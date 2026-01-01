@@ -33,22 +33,169 @@ const budgetText = {
 };
 
 const links = {
+  const links = {
   laptop: {
-    hp:{ "1":["https://www.youtube.com/watch?v=45y4YGxVInw"], "2":["https://www.youtube.com/HP30k"], "3":["https://www.youtube.com/HP40k"] },
-    dell:{ "1":["https://www.youtube.com/Dell20k"], "2":["https://www.youtube.com/Dell30k"], "3":["https://www.youtube.com/Dell40k"] },
-    asus:{ "1":["https://www.youtube.com/Asus20k"], "2":["https://www.youtube.com/Asus30k"], "3":["https://www.youtube.com/Asus40k"] },
-    lenovo:{ "1":["https://www.youtube.com/Lenovo20k"], "2":["https://www.youtube.com/Lenovo30k"], "3":["https://www.youtube.com/Lenovo40k"] },
-    macbook:{ "1":["https://www.youtube.com/Mac20k"], "2":["https://www.youtube.com/Mac30k"], "3":["https://www.youtube.com/Mac40k"] },
-    acer:{ "1":["https://www.youtube.com/Acer20k"], "2":["https://www.youtube.com/Acer30k"], "3":["https://www.youtube.com/Acer40k"] }
+    hp:{
+      "1":[
+        "https://www.youtube.com/watch?v=45y4YGxVInw",
+        "https://www.youtube.com/HP20k2",
+        "https://www.youtube.com/HP20k3"
+      ],
+      "2":[
+        "https://www.youtube.com/HP30k1",
+        "https://www.youtube.com/HP30k2"
+      ],
+      "3":[
+        "https://www.youtube.com/HP40k1",
+        "https://www.youtube.com/HP40k2"
+      ]
+    },
+    dell:{
+      "1":[
+        "https://www.youtube.com/Dell20k1",
+        "https://www.youtube.com/Dell20k2"
+      ],
+      "2":[
+        "https://www.youtube.com/Dell30k1",
+        "https://www.youtube.com/Dell30k2"
+      ],
+      "3":[
+        "https://www.youtube.com/Dell40k1",
+        "https://www.youtube.com/Dell40k2"
+      ]
+    },
+    asus:{
+      "1":[
+        "https://www.youtube.com/Asus20k1",
+        "https://www.youtube.com/Asus20k2"
+      ],
+      "2":[
+        "https://www.youtube.com/Asus30k1",
+        "https://www.youtube.com/Asus30k2"
+      ],
+      "3":[
+        "https://www.youtube.com/Asus40k1",
+        "https://www.youtube.com/Asus40k2"
+      ]
+    },
+    lenovo:{
+      "1":[
+        "https://www.youtube.com/Lenovo20k1",
+        "https://www.youtube.com/Lenovo20k2"
+      ],
+      "2":[
+        "https://www.youtube.com/Lenovo30k1",
+        "https://www.youtube.com/Lenovo30k2"
+      ],
+      "3":[
+        "https://www.youtube.com/Lenovo40k1",
+        "https://www.youtube.com/Lenovo40k2"
+      ]
+    },
+    macbook:{
+      "1":[
+        "https://www.youtube.com/Mac20k1",
+        "https://www.youtube.com/Mac20k2"
+      ],
+      "2":[
+        "https://www.youtube.com/Mac30k1",
+        "https://www.youtube.com/Mac30k2"
+      ],
+      "3":[
+        "https://www.youtube.com/Mac40k1",
+        "https://www.youtube.com/Mac40k2"
+      ]
+    },
+    acer:{
+      "1":[
+        "https://www.youtube.com/Acer20k1",
+        "https://www.youtube.com/Acer20k2"
+      ],
+      "2":[
+        "https://www.youtube.com/Acer30k1",
+        "https://www.youtube.com/Acer30k2"
+      ],
+      "3":[
+        "https://www.youtube.com/Acer40k1",
+        "https://www.youtube.com/Acer40k2"
+      ]
+    }
   },
+
   desktop: {
-    hp:{ "1":["https://www.youtube.com/HPDesk20k"], "2":["https://www.youtube.com/HPDesk30k"], "3":["https://www.youtube.com/HPDesk40k"] },
-    dell:{ "1":["https://www.youtube.com/DellDesk20k"], "2":["https://www.youtube.com/DellDesk30k"], "3":["https://www.youtube.com/DellDesk40k"] },
-    asus:{ "1":["https://www.youtube.com/AsusDesk20k"], "2":["https://www.youtube.com/AsusDesk30k"], "3":["https://www.youtube.com/AsusDesk40k"] },
-    lenovo:{ "1":["https://www.youtube.com/LenovoDesk20k"], "2":["https://www.youtube.com/LenovoDesk30k"], "3":["https://www.youtube.com/LenovoDesk40k"] },
-    acer:{ "1":["https://www.youtube.com/AcerDesk20k"], "2":["https://www.youtube.com/AcerDesk30k"], "3":["https://www.youtube.com/AcerDesk40k"] }
+    hp:{
+      "1":[
+        "https://www.youtube.com/HPDesk20k1",
+        "https://www.youtube.com/HPDesk20k2"
+      ],
+      "2":[
+        "https://www.youtube.com/HPDesk30k1",
+        "https://www.youtube.com/HPDesk30k2"
+      ],
+      "3":[
+        "https://www.youtube.com/HPDesk40k1",
+        "https://www.youtube.com/HPDesk40k2"
+      ]
+    },
+    dell:{
+      "1":[
+        "https://www.youtube.com/DellDesk20k1",
+        "https://www.youtube.com/DellDesk20k2"
+      ],
+      "2":[
+        "https://www.youtube.com/DellDesk30k1",
+        "https://www.youtube.com/DellDesk30k2"
+      ],
+      "3":[
+        "https://www.youtube.com/DellDesk40k1",
+        "https://www.youtube.com/DellDesk40k2"
+      ]
+    },
+    asus:{
+      "1":[
+        "https://www.youtube.com/AsusDesk20k1",
+        "https://www.youtube.com/AsusDesk20k2"
+      ],
+      "2":[
+        "https://www.youtube.com/AsusDesk30k1",
+        "https://www.youtube.com/AsusDesk30k2"
+      ],
+      "3":[
+        "https://www.youtube.com/AsusDesk40k1",
+        "https://www.youtube.com/AsusDesk40k2"
+      ]
+    },
+    lenovo:{
+      "1":[
+        "https://www.youtube.com/LenovoDesk20k1",
+        "https://www.youtube.com/LenovoDesk20k2"
+      ],
+      "2":[
+        "https://www.youtube.com/LenovoDesk30k1",
+        "https://www.youtube.com/LenovoDesk30k2"
+      ],
+      "3":[
+        "https://www.youtube.com/LenovoDesk40k1",
+        "https://www.youtube.com/LenovoDesk40k2"
+      ]
+    },
+    acer:{
+      "1":[
+        "https://www.youtube.com/AcerDesk20k1",
+        "https://www.youtube.com/AcerDesk20k2"
+      ],
+      "2":[
+        "https://www.youtube.com/AcerDesk30k1",
+        "https://www.youtube.com/AcerDesk30k2"
+      ],
+      "3":[
+        "https://www.youtube.com/AcerDesk40k1",
+        "https://www.youtube.com/AcerDesk40k2"
+      ]
+    }
   }
 };
+
 
 /* ===================== USER STATE (SAME AS OLD) ===================== */
 const userState = {};
@@ -186,3 +333,4 @@ Opposite to SBI Bank, Jalna Road, Jafrabad
 app.listen(process.env.PORT, () =>
   console.log("✅ WhatsApp Cloud API Bot Running")
 );
+
