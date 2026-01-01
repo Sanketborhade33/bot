@@ -1,3 +1,6 @@
+
+
+
 require("dotenv").config();
 const express = require("express");
 const axios = require("axios");
@@ -27,9 +30,9 @@ const brandMap = {
 };
 
 const budgetText = {
-  "1":"Under ₹20,000",
-  "2":"Under ₹30,000",
-  "3":"Under ₹40,000"
+  "1":"💰 Under ₹20,000",
+  "2":"💰 Under ₹30,000",
+  "3":"💰 Under ₹40,000"
 };
 
 
@@ -39,9 +42,18 @@ const budgetText = {
       "1":[
         "https://www.youtube.com/watch?v=45y4YGxVInw",
         "https://www.youtube.com/HP20k2",
+        "https://www.youtube.com/HP20k3",
+        "https://www.youtube.com/HP20k3",
+        "https://www.youtube.com/HP20k3",
+        "https://www.youtube.com/HP20k3",
         "https://www.youtube.com/HP20k3"
       ],
       "2":[
+        "https://www.youtube.com/HP30k1",
+        "https://www.youtube.com/HP30k1",
+        "https://www.youtube.com/HP30k1",
+        "https://www.youtube.com/HP30k1",
+        "https://www.youtube.com/HP30k1",
         "https://www.youtube.com/HP30k1",
         "https://www.youtube.com/HP30k2"
       ],
@@ -234,14 +246,20 @@ app.post("/webhook", async (req, res) => {
     if (["hi","hello","menu","start"].includes(msg)) {
       userState[chatId] = { step: "main" };
       reply =
-`👋 *Welcome to Jijau Computer Store*
+` 👋 *Welcome to Jijau Computer Store* 🏪
+ 
+     _Your one-stop shop for Computers & Repairs_
 
+━━━━━━━━━━━━━━
 Please choose an option 👇
-1️⃣ Laptop
-2️⃣ Desktop
-3️⃣ Repair Services
-4️⃣ Store Address
-5️⃣ Contact Support`;
+
+1️⃣ 💻 *Laptop*
+2️⃣ 🖥️ *Desktop*
+3️⃣ 🔧 *Repair Services*
+4️⃣ 📍 *Store Address*
+5️⃣ 📞 *Contact Support*
+
+🟢 Type the *number* to continue`;
     }
 
     /* ===== MAIN MENU ===== */
@@ -249,44 +267,50 @@ Please choose an option 👇
       if (msg === "1" || msg === "laptop") {
         userState[chatId] = { step:"brand", type:"laptop" };
         reply =
-`💻 *Laptop Brands*
-1️⃣ HP
-2️⃣ Dell
-3️⃣ Asus
-4️⃣ Lenovo
-5️⃣ MacBook
-6️⃣ Acer
+`💻 *Laptop Brands Available*
+1️⃣ *HP*
+2️⃣ *Dell*
+3️⃣ *Asus*
+4️⃣ *Lenovo*
+5️⃣ *MacBook*
+6️⃣ *Acer*
 
 🔁 Type *MENU* to go back`;
       }
       else if (msg === "2" || msg === "desktop") {
         userState[chatId] = { step:"brand", type:"desktop" };
         reply =
-`🖥️ *Desktop Brands*
-1️⃣ HP
-2️⃣ Dell
-3️⃣ Asus
-4️⃣ Lenovo
-5️⃣ Acer
+`🖥️ *Desktop Brands Available*
+1️⃣ *HP*
+2️⃣ *Dell*
+3️⃣ *Asus*
+4️⃣ *Lenovo*
+5️⃣ *Acer*
 
 🔁 Type *MENU* to go back`;
       }
       else if (msg === "3") {
         reply =
-`🔧 *Repair Services*
-✔ Laptop Repair
-✔ Desktop Repair
-✔ Screen Replacement
-✔ Software Installation
-✔ Virus Removal
-✔ Printer Repair
+`🔧 *Repair Services Available*
 
+━━━━━━━━━━━━━━
+✅ Laptop Repair
+✅ Desktop Repair
+✅ Screen Replacement
+✅ Software Installation
+✅ Virus Removal
+✅ Printer Repair
+
+📞 *_Call for urgent service_*
 🔁 Type *MENU* to go back`;
       }
       else if (msg === "4") {
         reply =
 `📍 *Jijau Computer Store*
-Opposite to SBI Bank, Jalna Road, Jafrabad
+
+          ━━━━━━━━━━━━━━
+ 🏦 Opposite to SBI Bank
+ 🛣️ Jalna Road, Jafrabad
 
 🕘 10:00 AM – 9:00 PM`;
       }
@@ -333,5 +357,11 @@ Opposite to SBI Bank, Jalna Road, Jafrabad
 app.listen(process.env.PORT, () =>
   console.log("✅ WhatsApp Cloud API Bot Running")
 );
+
+
+
+
+
+
 
 
