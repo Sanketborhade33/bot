@@ -32,7 +32,7 @@ const budgetText = {
   "3":"Under ₹40,000"
 };
 
-const links = {
+
   const links = {
   laptop: {
     hp:{
@@ -333,4 +333,5 @@ Opposite to SBI Bank, Jalna Road, Jafrabad
 app.listen(process.env.PORT, () =>
   console.log("✅ WhatsApp Cloud API Bot Running")
 );
+
 
