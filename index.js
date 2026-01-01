@@ -248,9 +248,9 @@ app.post("/webhook", async (req, res) => {
       reply =
 ` 👋 *Welcome to Jijau Computer Store* 🏪
  
-     _Your one-stop shop for Computers & Repairs_
+  _Your one-stop shop for Computers & Repairs_
 
-━━━━━━━━━━━━━━
+                ━━━━━━━━━━━━━━
 Please choose an option 👇
 
 1️⃣ 💻 *Laptop*
@@ -293,7 +293,7 @@ Please choose an option 👇
         reply =
 `🔧 *Repair Services Available*
 
-━━━━━━━━━━━━━━
+         ━━━━━━━━━━━━━━
 ✅ Laptop Repair
 ✅ Desktop Repair
 ✅ Screen Replacement
@@ -357,6 +357,7 @@ Please choose an option 👇
 app.listen(process.env.PORT, () =>
   console.log("✅ WhatsApp Cloud API Bot Running")
 );
+
 
 
 
