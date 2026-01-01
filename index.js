@@ -17,7 +17,7 @@ app.get("/webhook", (req, res) => {
   return res.sendStatus(403);
 });
 
-/* ===================== DATA (UNCHANGED LOGIC) ===================== */
+/* ===================== DATA (SAME AS OLD BOT) ===================== */
 
 const laptopBrands = ["hp","dell","asus","lenovo","macbook","acer"];
 const desktopBrands = ["hp","dell","asus","lenovo","acer"];
@@ -50,8 +50,26 @@ const links = {
   }
 };
 
-/* ===================== USER STATE ===================== */
+/* ===================== USER STATE (SAME AS OLD) ===================== */
 const userState = {};
+
+/* ===================== HELPER: SEND MESSAGE ===================== */
+async function sendMessage(to, text) {
+  await axios.post(
+    `https://graph.facebook.com/v18.0/${process.env.WHATSAPP_PHONE_NUMBER_ID}/messages`,
+    {
+      messaging_product: "whatsapp",
+      to,
+      text: { body: text }
+    },
+    {
+      headers: {
+        Authorization: `Bearer ${process.env.WHATSAPP_ACCESS_TOKEN}`,
+        "Content-Type": "application/json"
+      }
+    }
+  );
+}
 
 /* ===================== RECEIVE MESSAGE ===================== */
 app.post("/webhook", async (req, res) => {
@@ -59,18 +77,19 @@ app.post("/webhook", async (req, res) => {
     const message = req.body.entry?.[0]?.changes?.[0]?.value?.messages?.[0];
     if (!message) return res.sendStatus(200);
 
-    const from = message.from;
+    const chatId = message.from;
     const msg = message.text?.body?.toLowerCase().trim();
 
-    let reply = "❌ Invalid input. Type *MENU*";
-    let state = userState[from] || { step:"main" };
+    let reply = "";
+    const state = userState[chatId] || { step: "main" };
 
     /* ===== MENU ===== */
     if (["hi","hello","menu","start"].includes(msg)) {
-      userState[from] = { step:"main" };
+      userState[chatId] = { step: "main" };
       reply =
-`👋 Welcome to Jijau Computer Store
+`👋 *Welcome to Jijau Computer Store*
 
+Please choose an option 👇
 1️⃣ Laptop
 2️⃣ Desktop
 3️⃣ Repair Services
@@ -81,16 +100,58 @@ app.post("/webhook", async (req, res) => {
     /* ===== MAIN MENU ===== */
     else if (state.step === "main") {
       if (msg === "1" || msg === "laptop") {
-        userState[from] = { step:"brand", type:"laptop" };
-        reply = "💻 Laptop Brands:\n1️⃣ HP\n2️⃣ Dell\n3️⃣ Asus\n4️⃣ Lenovo\n5️⃣ MacBook\n6️⃣ Acer";
+        userState[chatId] = { step:"brand", type:"laptop" };
+        reply =
+`💻 *Laptop Brands*
+1️⃣ HP
+2️⃣ Dell
+3️⃣ Asus
+4️⃣ Lenovo
+5️⃣ MacBook
+6️⃣ Acer
+
+🔁 Type *MENU* to go back`;
       }
       else if (msg === "2" || msg === "desktop") {
-        userState[from] = { step:"brand", type:"desktop" };
-        reply = "🖥️ Desktop Brands:\n1️⃣ HP\n2️⃣ Dell\n3️⃣ Asus\n4️⃣ Lenovo\n5️⃣ Acer";
+        userState[chatId] = { step:"brand", type:"desktop" };
+        reply =
+`🖥️ *Desktop Brands*
+1️⃣ HP
+2️⃣ Dell
+3️⃣ Asus
+4️⃣ Lenovo
+5️⃣ Acer
+
+🔁 Type *MENU* to go back`;
       }
-      else if (msg === "3") reply = "🔧 Repair services available.\nType MENU to go back";
-      else if (msg === "4") reply = "📍 Jijau Computer Store, Jalna Road";
-      else if (msg === "5") reply = "📞 8805608908";
+      else if (msg === "3") {
+        reply =
+`🔧 *Repair Services*
+✔ Laptop Repair
+✔ Desktop Repair
+✔ Screen Replacement
+✔ Software Installation
+✔ Virus Removal
+✔ Printer Repair
+
+🔁 Type *MENU* to go back`;
+      }
+      else if (msg === "4") {
+        reply =
+`📍 *Jijau Computer Store*
+Opposite to SBI Bank, Jalna Road, Jafrabad
+
+🕘 10:00 AM – 9:00 PM`;
+      }
+      else if (msg === "5") {
+        reply =
+`📞 *Contact Support*
+📱 8805608908
+📧 jijauc@gmail.com`;
+      }
+      else {
+        reply = "❌ Invalid input. Type *MENU* to start again";
+      }
     }
 
     /* ===== BRAND SELECTION ===== */
@@ -99,34 +160,22 @@ app.post("/webhook", async (req, res) => {
       const allowed = state.type === "laptop" ? laptopBrands : desktopBrands;
 
       if (!allowed.includes(brand)) {
-        reply = "❌ Invalid brand. Type MENU";
+        reply = `❌ ${brand.toUpperCase()} is not available.\n\n🔁 Type *MENU*`;
       } else {
         const vids = links[state.type][brand];
-        reply = `💻 ${brand.toUpperCase()} ${state.type}\n\n`;
-        ["1","2","3"].forEach(b=>{
-          if (vids[b]) reply += `${budgetText[b]}:\n${vids[b].join("\n")}\n\n`;
+        reply = `💻 *${brand.toUpperCase()} ${state.type.toUpperCase()} – Reviews*\n\n`;
+        ["1","2","3"].forEach(b => {
+          if (vids[b]) {
+            reply += `${budgetText[b]}:\n${vids[b].join("\n")}\n\n`;
+          }
         });
-        reply += "🔁 Type MENU";
+        reply += "🔁 Type *MENU* to go back";
       }
     }
 
-    /* ===== SEND MESSAGE ===== */
-    await axios.post(
-      `https://graph.facebook.com/v18.0/${process.env.WHATSAPP_PHONE_NUMBER_ID}/messages`,
-      {
-        messaging_product:"whatsapp",
-        to: from,
-        text:{ body: reply }
-      },
-      {
-        headers:{
-          Authorization:`Bearer ${process.env.WHATSAPP_ACCESS_TOKEN}`,
-          "Content-Type":"application/json"
-        }
-      }
-    );
-
+    await sendMessage(chatId, reply);
     res.sendStatus(200);
+
   } catch (err) {
     console.error(err.response?.data || err.message);
     res.sendStatus(500);
